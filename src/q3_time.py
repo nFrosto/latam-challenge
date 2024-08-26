@@ -11,8 +11,8 @@ def process_line_time(line):
         if mentioned_users is None:  # Manejar el caso en el que mentionedUsers sea None
             mentioned_users = []
         return [user['username'] for user in mentioned_users]
-    except (KeyError, ValueError, json.JSONDecodeError):
-        return []
+    except (KeyError, ValueError, json.JSONDecodeError) as e:
+        print(f"Error al procesar la línea: {str(e)}")
 
 def q3_time(file_path: str) -> List[Tuple[str, int]]:
     num_processes = mp.cpu_count()  # Usa todos los núcleos disponibles
