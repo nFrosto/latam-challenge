@@ -11,8 +11,8 @@ def process_line(line):
         date = datetime.fromisoformat(tweet['date'].replace('Z', '+00:00')).date()
         username = tweet['user']['username']
         return date, username
-    except (KeyError, ValueError, json.JSONDecodeError):
-        return None, None
+    except (KeyError, ValueError, json.JSONDecodeError) as e:
+        print(f"Error al procesar la línea: {str(e)}")
 
 def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
     with open(file_path, 'r', encoding='utf-8') as file:
